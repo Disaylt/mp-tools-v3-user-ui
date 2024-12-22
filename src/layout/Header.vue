@@ -1,25 +1,26 @@
 <template>
     <div class="header flex flex-row px-2">
         <div class="flex align-items-center gap-1" style="width: 230px;">
-            <Button icon="pi pi-bars" aria-label="Filter" variant="outlined"  />
+            <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
             <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
                 <div class="flex flex-row gap-1">
-                    <Button @click="toggleTheme" :icon="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"  aria-label="Filter" variant="outlined"  />
-                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined"  />
-                    <Button icon="pi pi-user" aria-label="Filter" variant="outlined"  />
+                    <Chip class="overflow-hidden" >
+                        <i class="pi pi-wallet" style="font-size: 1rem"></i>
+                        <span class="overflow-hidden text-overflow-clip">23,453.32</span>
+                        <span>р.</span>
+                    </Chip>
+                    <Button @click="toggleTheme" :icon="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"  aria-label="Filter" variant="outlined" severity="contrast"  />
+                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast"  />
+                    <Button icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast"  />
                 </div>
             </div>
-            <div class="block md:hidden">
-                <Button icon="pi pi-ellipsis-v" aria-label="Filter" variant="outlined"  />
+            <div class="flex flex-row gap-1 block md:hidden">
+                <Button @click="toggleTheme" :icon="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"  aria-label="Filter" variant="outlined" severity="contrast"  />
+                <Button icon="pi pi-ellipsis-v" aria-label="Filter" variant="outlined" severity="contrast"  />
             </div>
-            <Chip class="overflow-hidden" >
-                <i class="pi pi-wallet" style="font-size: 1rem"></i>
-                <span class="overflow-hidden text-overflow-clip">23,453.32</span>
-                <span>р.</span>
-            </Chip>
         </div>
     </div>
 </template>
