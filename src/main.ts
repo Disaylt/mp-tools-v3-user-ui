@@ -6,9 +6,13 @@ import PrimeTheme from './presets/theme';
 import './style.scss'
 import '/node_modules/primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
+import primeVueComponentManager from './presets/PrimeVueComponentManager';
 
-createApp(App)
-.use(PrimeVue, {
+const app = createApp(App);
+
+primeVueComponentManager.addTo(app);
+
+app.use(PrimeVue, {
         theme: {
             preset: PrimeTheme,
             options: {
@@ -16,5 +20,7 @@ createApp(App)
             }
         }
     }
-)
-.mount('#app')
+);
+
+
+app.mount('#app');
