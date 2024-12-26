@@ -27,13 +27,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Select from 'primevue/select';
-import Chip from 'primevue/chip';
 
 export default defineComponent({
     components: {
-        Select,
-        Chip
     },
     data() {
         return {
