@@ -1,4 +1,4 @@
-import { MainCategory, type MainCategoryView } from "../models/category.model";
+import { MainCategory, type MainCategoryView } from "../models/category.model.ts";
 
 interface IMainCategoryService{
     getCategories() : MainCategoryView[]

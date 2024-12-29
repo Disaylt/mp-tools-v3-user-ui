@@ -2,7 +2,7 @@
     <div class="header flex flex-row px-2">
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
-            <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+            <Select v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
@@ -27,21 +27,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import MainCategoryService from '../../services/MainCategory.service';
+import type { MainCategoryView } from '../../models/category.model';
 
 export default defineComponent({
     components: {
     },
     data() {
         return {
-            selectedCity: null,
             isDarkMode : true,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ]
+            categories: MainCategoryService.getCategories() as MainCategoryView[],
+            selectCategory : null as MainCategoryView | null
         };
     },
     methods: {
