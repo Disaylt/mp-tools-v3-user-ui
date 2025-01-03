@@ -2,48 +2,78 @@
     <div class="header flex flex-row px-2">
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
-            <Select v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+            <Select v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Сервисы"
+                class="" />
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
                 <div class="flex flex-row gap-1">
-                    <Chip class="overflow-hidden" >
+                    <Chip class="overflow-hidden">
                         <i class="pi pi-wallet" style="font-size: 1rem"></i>
-                        <span class="overflow-hidden text-overflow-clip">23,453.32</span>
-                        <span>р.</span>
+                        <label class="overflow-hidden text-overflow-clip">{{ getMoneyAsCurrencyString }}</label>
+                        <label>р.</label>
                     </Chip>
-                    <Button @click="toggleTheme" :icon="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"  aria-label="Filter" variant="outlined" severity="contrast"  />
-                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast"  />
-                    <Button icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast"  />
+                    <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
+                        aria-label="Filter" variant="outlined" severity="contrast" />
+                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast" />
+                    <Button icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast" />
                 </div>
             </div>
             <div class="flex flex-row gap-1 block md:hidden">
-                <Button @click="toggleTheme" :icon="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"  aria-label="Filter" variant="outlined" severity="contrast"  />
-                <Button icon="pi pi-ellipsis-v" aria-label="Filter" variant="outlined" severity="contrast"  />
+                <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
+                    aria-label="Filter" variant="outlined" severity="contrast" />
+                <Button @click="opentMenu($event)" icon="pi pi-ellipsis-v" aria-label="Filter" variant="outlined"
+                    severity="contrast" />
+                <Popover ref="smallMenu">
+                    <div class="flex flex-column gap-2">
+                        <Chip class="flex justify-content-center  overflow-hidden w-full">
+                            <i class="pi pi-wallet" style="font-size: 1rem"></i>
+                            <label class="overflow-hidden text-overflow-clip">{{ getMoneyAsCurrencyString }}</label>
+                            <label>р.</label>
+                        </Chip>
+                        <Button type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
+                        <Button type="button" label="Профиль" icon="pi pi-user" />
+                    </div>
+                </Popover>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import MainCategoryService from '../../services/MainCategory.service';
 import type { MainCategoryView } from '../../models/category.model';
+import { useAppThemeStore } from '../../store/app-theme.store';
+import type { PopoverMethods } from 'primevue/popover';
 
 export default defineComponent({
     components: {
     },
+    setup() {
+        const appThemeStore = useAppThemeStore();
+        const smallMenu = ref<PopoverMethods | null>(null);
+
+        return {
+            appThemeStore,
+            smallMenu
+        }
+    },
     data() {
         return {
-            isDarkMode : true,
             categories: MainCategoryService.getCategories() as MainCategoryView[],
-            selectCategory : null as MainCategoryView | null
+            selectCategory: null as MainCategoryView | null,
+            money: 0 as number
         };
     },
+    computed: {
+        getMoneyAsCurrencyString() {
+            return this.money.toLocaleString('ru');
+        }
+    },
     methods: {
-        toggleTheme() {
-            this.isDarkMode = !this.isDarkMode;
-            document.documentElement.classList.toggle("prime-dark")
+        opentMenu(event: Event) {
+            this.smallMenu?.toggle(event)
         }
     }
 });

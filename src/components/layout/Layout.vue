@@ -10,7 +10,7 @@
         </div>
         <div class="flex-grow-1 main overflow-auto">
             <div class="body p-2">
-                <p v-for="n in 10">{{ n }}</p>
+
             </div>
             <div class="footer mx-2 bg-card border-noround-bottom border-round-xl">
                 123
@@ -23,7 +23,6 @@
 import { defineComponent } from 'vue';
 import SideBar from './SideBar.vue';
 import Header from './Header.vue'
-
 
 export default defineComponent({
     components: {
