@@ -1,17 +1,14 @@
+<template>
+ <span>REGISTER</span>
+</template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: {
-  }
-})
-
+    components: {
+    }});
 </script>
 
-<template>
-  <RouterView />
-</template>
-
-<style scoped>
-
+<style lang="scss">
 </style>

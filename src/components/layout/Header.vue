@@ -1,9 +1,14 @@
 <template>
     <div class="header flex flex-row px-2">
         <div class="flex align-items-center gap-1" style="width: 230px;">
-            <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
-            <Select v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Сервисы"
-                class="" />
+            <div class="flex-none">
+                <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
+            </div>
+            <div class="flex-grow-1">
+                <Select :fluid="true" v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Сервисы"
+                style="max-width: 200px;" 
+                :overlay-style="{ 'max-width' : '100vw'}" />
+            </div>
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
@@ -42,7 +47,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import MainCategoryService from '../../services/MainCategory.service';
+import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
