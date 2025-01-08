@@ -2,7 +2,7 @@
     <div class="bg-card">
         <Header></Header>
     </div>
-    <div class="main flex flex-row flex-wrap bg-ground">
+    <div class="main flex flex-row flex-wrap">
         <div class="side-bar hidden md:block fadeinleft animation-duration-100 main overflow-auto p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
@@ -10,10 +10,10 @@
         </div>
         <div class="flex-grow-1 main overflow-auto">
             <div class="body p-2">
-
+                <RouterView />
             </div>
             <div class="footer mx-2 bg-card border-noround-bottom border-round-xl">
-                123
+                <router-link to="/login">Home</router-link>
             </div>
         </div>
     </div>

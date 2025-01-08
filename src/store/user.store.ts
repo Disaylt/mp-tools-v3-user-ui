@@ -1,16 +1,15 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 
+interface IUserDetails{
+    login : string;
+    email: string;
+}
 
-export const useAppThemeStore = defineStore({
-    id: 'user',
+export const useAppThemeStore = defineStore("user", {
     state: () => ({
-        isDark : true as boolean,
+        user : null as null | IUserDetails
     }),
     actions: {
-        toggle(){
-            this.isDark = !this.isDark;
-            document.documentElement.classList.toggle("prime-dark")
-        }
     }
 })
 

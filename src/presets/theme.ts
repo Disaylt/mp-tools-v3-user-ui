@@ -2,6 +2,7 @@ import { definePreset } from '@primevue/themes';
         import Aura from '@primevue/themes/aura';
 
         export default definePreset(Aura, {
+            ripple: true,
             primitive: {
                 borderRadius: {
                     none: "0",

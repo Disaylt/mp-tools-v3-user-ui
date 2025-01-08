@@ -23,10 +23,10 @@ class UserServcie implements IUserServcie{
         return apiService.get<AuthDetails>("/identity/v1/user/login");
     }
     register(): Promise<AxiosResponse<AuthDetails>> {
-        return apiService.get<AuthDetails>("/identity/v1/user/register");
+        return apiService.post<AuthDetails>("/identity/v1/user/register");
     }
     getInfo(): Promise<AxiosResponse<IdentityDetails>>{
-        return apiService.get<IdentityDetails>("/identity/v1/user/details");
+        return apiService.post<IdentityDetails>("/identity/v1/user/details");
     }
 
 }

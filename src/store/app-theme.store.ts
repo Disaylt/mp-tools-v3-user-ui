@@ -1,8 +1,7 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 
 
-export const useAppThemeStore = defineStore({
-    id: 'appTheme',
+export const useAppThemeStore = defineStore("appTheme", {
     state: () => ({
         isDark : true as boolean,
     }),
