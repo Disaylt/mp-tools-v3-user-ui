@@ -1,32 +1,22 @@
 import type { AxiosResponse } from "axios";
 import apiService from "../core/api.service";
+import type { AuthDetails, IdentityDetails, NewUser } from "../models/user.model";
 
 interface IUserServcie{
     getInfo() : Promise<AxiosResponse<IdentityDetails>>;
     login() : Promise<AxiosResponse<AuthDetails>>;
-    register() : Promise<AxiosResponse<AuthDetails>>;
-}
-
-
-interface IdentityDetails{
-    email: string;
-    name: string;
-}
-
-interface AuthDetails{
-    sessionToken : string;
-    authToken : string;
+    register(newUser : NewUser) : Promise<AxiosResponse<AuthDetails>>;
 }
 
 class UserServcie implements IUserServcie{
     login(): Promise<AxiosResponse<AuthDetails>> {
-        return apiService.get<AuthDetails>("/identity/v1/user/login");
+        return apiService.post<AuthDetails>("/identity/v1/user/login");
     }
-    register(): Promise<AxiosResponse<AuthDetails>> {
-        return apiService.post<AuthDetails>("/identity/v1/user/register");
+    register(newUser : NewUser): Promise<AxiosResponse<AuthDetails>> {
+        return apiService.post<AuthDetails>("/identity/v1/user/register", newUser);
     }
     getInfo(): Promise<AxiosResponse<IdentityDetails>>{
-        return apiService.post<IdentityDetails>("/identity/v1/user/details");
+        return apiService.get<IdentityDetails>("/identity/v1/user/details");
     }
 
 }

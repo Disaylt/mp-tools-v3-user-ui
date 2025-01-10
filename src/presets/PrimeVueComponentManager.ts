@@ -17,6 +17,9 @@ import Ripple from 'primevue/ripple';
 import IftaLabel from 'primevue/iftalabel';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
+import Skeleton from 'primevue/skeleton';
+import ProgressSpinner from 'primevue/progressspinner';
+import Message from 'primevue/message';
 
 class PrimeVueComponentManager{
     addTo(app : App<Element>){
@@ -37,6 +40,11 @@ class PrimeVueComponentManager{
         app.component("IftaLabel", IftaLabel);
         app.component("InputText", InputText);
         app.component("Password", Password);
+        app.component("Skeleton", Skeleton);
+        app.component("ProgressSpinner", ProgressSpinner);
+        app.component("Message", Message);
+
+        
         app.directive("Ripple", Ripple);
     }
 }
