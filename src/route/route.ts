@@ -3,6 +3,7 @@ import Layout from '../components/layout/Layout.vue'
 import Login from '../views/auth/Login.vue';
 import Register from '../views/auth/Register.vue';
 import Auth from '../views/Auth.vue';
+import { useUserStore } from '../store/user.store';
 
 const routes = [
     {
@@ -32,7 +33,12 @@ const router = createRouter({
 
 router.beforeEach((to, _from, next) => {
     if(to.meta.requiresAuth){
-        next()
+        if(useUserStore().user === null){
+            next("/auth/login")
+        }
+        else{
+            next();
+        }
     }
     else{
         next();

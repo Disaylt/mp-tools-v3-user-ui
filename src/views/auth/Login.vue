@@ -17,6 +17,7 @@
 import { defineComponent } from "vue";
 import userService from "../../services/user.service";
 import { useUserStore } from "../../store/user.store";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
     data:() => {
@@ -27,9 +28,10 @@ export default defineComponent({
     },
     setup() {
         const userStorage = useUserStore();
-        
+        const router = useRouter();
         
         return {
+            router,
             userStorage
         }
     },
@@ -47,12 +49,15 @@ export default defineComponent({
                     email: response.data.email
                 }
                 this.userStorage.set(user);
+                this.router.push("/panel")
             }))
             .catch((_er) => {
 
             })
         }
             
+    },
+    computed:{
     }
 });
 </script>
