@@ -2,11 +2,17 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 
 export const useSideBarStore = defineStore("sideBar", {
     state: () => ({
-        isShow : true
+        isShowStatic : true,
+        isShowDraw : false,
     }),
     actions: {
         toggle(){
-            this.isShow = !this.isShow;
+            if(window.innerWidth >= 768){
+                this.isShowStatic = !this.isShowStatic;
+            }
+            else{
+                this.isShowDraw = !this.isShowDraw;
+            }
         }
     }
 })

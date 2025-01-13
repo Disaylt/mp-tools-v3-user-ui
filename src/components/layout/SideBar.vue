@@ -1,5 +1,7 @@
 <template>
-    <div v-for="item in 30">{{ item }}</div>
+    <div class="flex flex-column gap-2 p-2">
+        <div v-for="item in 30">{{ item }}</div>
+    </div>
 </template>
 
 <script lang="ts">

@@ -3,7 +3,7 @@
         <Header></Header>
     </div>
     <div class="main flex flex-row flex-wrap">
-        <div v-if="sideBarStore.isShow" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
+        <div v-if="sideBarStore.isShowStatic" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
@@ -17,6 +17,9 @@
             </div>
         </div>
     </div>
+    <Drawer v-model:visible="sideBarStore.isShowDraw" header="Drawer">
+        <SideBar></SideBar>
+    </Drawer>
 </template>
 
 <script lang="ts">
@@ -40,6 +43,7 @@ export default defineComponent({
     },
     data: () => {
         return {
+            visibleDrawSideMenu : false as boolean
         }
     },
     computed: {
