@@ -3,7 +3,7 @@
         <Header></Header>
     </div>
     <div class="main flex flex-row flex-wrap">
-        <div class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
+        <div v-if="sideBarStore.isShow" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
@@ -23,11 +23,20 @@
 import { defineComponent } from 'vue';
 import SideBar from './SideBar.vue';
 import Header from './Header.vue'
+import { useSideBarStore } from '../../store/side-bar.store';
 
 export default defineComponent({
     components: {
         Header,
         SideBar
+    },
+    setup() {
+
+        const sideBarStore = useSideBarStore();
+        
+        return{
+            sideBarStore
+        }
     },
     data: () => {
         return {

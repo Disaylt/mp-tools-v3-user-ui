@@ -2,7 +2,7 @@
     <div class="header flex flex-row px-2 border-bottom-1 border-color">
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <div class="flex-none">
-                <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
+                <Button @click="sideBarStore.toggle()" icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
             </div>
             <div class="flex-grow-1">
                 <Select :fluid="true" v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Сервисы"
@@ -51,17 +51,20 @@ import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
+import { useSideBarStore } from '../../store/side-bar.store';
 
 export default defineComponent({
     components: {
     },
     setup() {
         const appThemeStore = useAppThemeStore();
+        const sideBarStore = useSideBarStore();
         const smallMenu = ref<PopoverMethods | null>(null);
 
         return {
             appThemeStore,
-            smallMenu
+            smallMenu,
+            sideBarStore
         }
     },
     data() {
