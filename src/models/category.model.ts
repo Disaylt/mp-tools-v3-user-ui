@@ -1,3 +1,5 @@
+import type { Component } from "vue";
+
 export enum MainCategory{
     WB,
     Ozon,
@@ -7,5 +9,6 @@ export enum MainCategory{
 
 export interface MainCategoryView{
     name : string;
-    value : MainCategory
+    value : MainCategory,
+    component : Component
 }

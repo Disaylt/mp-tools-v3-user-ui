@@ -20,9 +20,11 @@ import Password from 'primevue/password';
 import Skeleton from 'primevue/skeleton';
 import ProgressSpinner from 'primevue/progressspinner';
 import Message from 'primevue/message';
+import Drawer from 'primevue/drawer';
 
 class PrimeVueComponentManager{
     addTo(app : App<Element>){
+        app.component("Drawer", Drawer);
         app.component("Button", Button);
         app.component("Select", Select);
         app.component("Chip", Chip);
