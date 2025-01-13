@@ -1,5 +1,5 @@
 <template>
-<div>TG</div>
+<div>Aggregate</div>
 </template>
 
 <script lang="ts">

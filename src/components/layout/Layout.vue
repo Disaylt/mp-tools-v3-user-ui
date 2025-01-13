@@ -3,7 +3,7 @@
         <Header></Header>
     </div>
     <div class="main flex flex-row flex-wrap">
-        <div v-if="sideBarStore.isShowStatic" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
+        <div v-if="sideBarStore.isShowStatic && mainCategoryStore.selectedValue !== null" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
@@ -27,6 +27,7 @@ import { defineComponent } from 'vue';
 import SideBar from './SideBar.vue';
 import Header from './Header.vue'
 import { useSideBarStore } from '../../store/side-bar.store';
+import { useMainCategoryStore } from '../../store/main-category.service';
 
 export default defineComponent({
     components: {
@@ -36,9 +37,11 @@ export default defineComponent({
     setup() {
 
         const sideBarStore = useSideBarStore();
+        const mainCategoryStore = useMainCategoryStore();
         
         return{
-            sideBarStore
+            sideBarStore,
+            mainCategoryStore
         }
     },
     data: () => {
