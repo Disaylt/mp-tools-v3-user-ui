@@ -3,7 +3,7 @@
         <Header></Header>
     </div>
     <div class="main flex flex-row flex-wrap">
-        <div class="side-bar hidden md:block fadeinleft animation-duration-100 main overflow-auto p-2">
+        <div class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
@@ -28,6 +28,12 @@ export default defineComponent({
     components: {
         Header,
         SideBar
+    },
+    data: () => {
+        return {
+        }
+    },
+    computed: {
     }
 });
 </script>

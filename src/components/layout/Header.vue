@@ -1,5 +1,5 @@
 <template>
-    <div class="header flex flex-row px-2">
+    <div class="header flex flex-row px-2 border-bottom-1 border-color">
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <div class="flex-none">
                 <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
@@ -88,5 +88,9 @@ export default defineComponent({
 <style>
 .brand-column {
     width: 250px;
+}
+
+.border-color{
+    border-color: #5f96a196 !important;
 }
 </style>
