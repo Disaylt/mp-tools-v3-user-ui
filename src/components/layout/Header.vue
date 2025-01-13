@@ -1,11 +1,16 @@
 <template>
-    <div class="header flex flex-row px-2">
+    <div class="header flex flex-row px-2 border-bottom-1 border-color">
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <div class="flex-none">
-                <Button icon="pi pi-bars" aria-label="Filter" variant="outlined" severity="contrast" />
+                <Button :disabled="mainCategoryStore.selectedValue === null" 
+                @click="sideBarStore.toggle()" 
+                icon="pi pi-bars" 
+                aria-label="Filter" 
+                variant="outlined" 
+                severity="contrast" />
             </div>
             <div class="flex-grow-1">
-                <Select :fluid="true" v-model="selectCategory" :options="categories" optionLabel="name" placeholder="Сервисы"
+                <Select :fluid="true" v-model="mainCategoryStore.selectedValue" :options="categories" optionLabel="name" placeholder="Сервисы"
                 style="max-width: 200px;" 
                 :overlay-style="{ 'max-width' : '100vw'}" />
             </div>
@@ -51,26 +56,23 @@ import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
     components: {
     },
     setup() {
         const appThemeStore = useAppThemeStore();
+        const sideBarStore = useSideBarStore();
         const smallMenu = ref<PopoverMethods | null>(null);
-        const router = useRouter();
 
         return {
             appThemeStore,
-            smallMenu,
-            router
+            smallMenu
         }
     },
     data() {
         return {
             categories: MainCategoryService.getCategories() as MainCategoryView[],
-            selectCategory: null as MainCategoryView | null,
             money: 0 as number
         };
     },
@@ -94,5 +96,9 @@ export default defineComponent({
 <style>
 .brand-column {
     width: 250px;
+}
+
+.border-color{
+    border-color: #5f96a196 !important;
 }
 </style>
