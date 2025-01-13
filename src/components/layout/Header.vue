@@ -21,7 +21,7 @@
                     <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
                         aria-label="Filter" variant="outlined" severity="contrast" />
                     <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast" />
-                    <Button icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast" />
+                    <Button @click="pushToProfile()" icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast" />
                 </div>
             </div>
             <div class="flex flex-row gap-1 block md:hidden">
@@ -37,7 +37,7 @@
                             <label>р.</label>
                         </Chip>
                         <Button type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
-                        <Button type="button" label="Профиль" icon="pi pi-user" />
+                        <Button @click="pushToProfile()" type="button" label="Профиль" icon="pi pi-user" />
                     </div>
                 </Popover>
             </div>
@@ -51,6 +51,7 @@ import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     components: {
@@ -58,10 +59,12 @@ export default defineComponent({
     setup() {
         const appThemeStore = useAppThemeStore();
         const smallMenu = ref<PopoverMethods | null>(null);
+        const router = useRouter();
 
         return {
             appThemeStore,
-            smallMenu
+            smallMenu,
+            router
         }
     },
     data() {
@@ -79,6 +82,9 @@ export default defineComponent({
     methods: {
         opentMenu(event: Event) {
             this.smallMenu?.toggle(event)
+        },
+        pushToProfile(){
+            this.router.push("/panel/profile")
         }
     }
 });

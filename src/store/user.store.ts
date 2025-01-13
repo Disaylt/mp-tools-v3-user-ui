@@ -1,16 +1,12 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-
-interface IUserDetails{
-    login : string;
-    email: string;
-}
+import type { IdentityDetails } from '../models/user.model';
 
 export const useUserStore = defineStore("user", {
     state: () => ({
-        user : null as null | IUserDetails
+        user : null as null | IdentityDetails
     }),
     actions: {
-        set(value : IUserDetails){
+        set(value : IdentityDetails){
             this.user = value;
         },
         clear(){

@@ -4,12 +4,14 @@ import Login from '../views/auth/Login.vue';
 import Register from '../views/auth/Register.vue';
 import Auth from '../views/Auth.vue';
 import { useUserStore } from '../store/user.store';
+import Profile from '../views/panel/Profile.vue';
 
 const routes = [
     {
         path: '/panel', 
         component: Layout,
         children: [
+            { path: 'profile', component: Profile },
         ],
         meta: {
             requiresAuth: true

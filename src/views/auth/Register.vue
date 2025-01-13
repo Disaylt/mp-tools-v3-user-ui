@@ -27,18 +27,16 @@ import userService from "../../services/user.service";
 import { useRouter } from "vue-router";
 import type { AxiosError } from "axios";
 import type { ParamHttpErrorBody } from "../../models/http-request.model";
-import { useAuthTabStore } from "../../store/auth-tab.store";
-import authTabService from "../../services/auth-tab.service";
+import { useUserStore } from "../../store/user.store";
 
 export default defineComponent({
     setup() {
         const router = useRouter();
-        const authTabStore = useAuthTabStore();
+        const userStore = useUserStore();
 
         return{
             router,
-            authTabStore,
-            authTabService
+            userStore
         }
     },
     data: () => {
@@ -61,12 +59,11 @@ export default defineComponent({
         async register(){
             this.isLoadRegisterButton = true;
             this.setDefaultErrors();
+            
             await userService.register(this.newUser)
-                .then(() => {
-
-                    const routeTab = this.authTabService.getLogin();
-                    this.authTabStore.set(routeTab.route);
-                    this.router.push(routeTab.route)
+                .then((response) => {
+                    this.userStore.set(response.data.identityDetails);
+                    this.router.push("/panel")
                 })
                 .catch((er : AxiosError<ParamHttpErrorBody<RegisterErrorMessages>>) => {
                     if(er.response){

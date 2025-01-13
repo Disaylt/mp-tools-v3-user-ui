@@ -1,19 +1,23 @@
 import type { AxiosResponse } from "axios";
 import apiService from "../core/api.service";
-import type { AuthDetails, IdentityDetails, NewUser } from "../models/user.model";
+import type { AuthResult, IdentityDetails, Login, NewUser } from "../models/user.model";
 
 interface IUserServcie{
     getInfo() : Promise<AxiosResponse<IdentityDetails>>;
-    login() : Promise<AxiosResponse<AuthDetails>>;
-    register(newUser : NewUser) : Promise<AxiosResponse<AuthDetails>>;
+    login(data : Login) : Promise<AxiosResponse<AuthResult>>;
+    register(newUser : NewUser) : Promise<AxiosResponse<AuthResult>>;
+    logout() : Promise<AxiosResponse>;
 }
 
 class UserServcie implements IUserServcie{
-    login(): Promise<AxiosResponse<AuthDetails>> {
-        return apiService.post<AuthDetails>("/identity/v1/user/login");
+    logout(): Promise<AxiosResponse> {
+        return apiService.put("/identity/v1/user/logout")
     }
-    register(newUser : NewUser): Promise<AxiosResponse<AuthDetails>> {
-        return apiService.post<AuthDetails>("/identity/v1/user/register", newUser);
+    login(data : Login): Promise<AxiosResponse<AuthResult>> {
+        return apiService.post<AuthResult>("/identity/v1/user/login", data);
+    }
+    register(newUser : NewUser): Promise<AxiosResponse<AuthResult>> {
+        return apiService.post<AuthResult>("/identity/v1/user/register", newUser);
     }
     getInfo(): Promise<AxiosResponse<IdentityDetails>>{
         return apiService.get<IdentityDetails>("/identity/v1/user/details");

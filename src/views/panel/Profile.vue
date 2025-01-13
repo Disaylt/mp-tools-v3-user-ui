@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-column align-content-center justify-content-center flex-wrap h-screen gap-2">
-        <Button @click="signOut()" label="Выйти" severity="help" />
+    <div class="">
+        <Button @click="logOut()" label="Выйти" severity="help" />
     </div>
 </template>
 
@@ -8,6 +8,7 @@
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../../store/user.store';
+import userService from '../../services/user.service';
 
 
 export default defineComponent({
@@ -21,9 +22,12 @@ export default defineComponent({
         }
     },
     methods: {
-        signOut(){
-            this.userStorage.clear();
-            this.router.push("/auth/login")
+        async logOut(){
+            await userService.logout()
+                .then(() => {
+                    this.userStorage.clear();
+                    this.router.push("/auth/login")
+                })
         }
     },
     components: {
