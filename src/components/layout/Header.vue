@@ -3,8 +3,8 @@
         <div class="flex align-items-center gap-1" style="width: 230px;">
             <div class="flex-none">
                 <Button :disabled="mainCategoryStore.selectedValue === null" 
-                @click="sideBarStore.toggle()" 
-                icon="pi pi-bars" 
+                @click="sideBarStore.toggle()"
+                :icon="sideBarStore.isShowStatic ? 'pi pi-bars' : 'pi pi-ellipsis-v'"
                 aria-label="Filter" 
                 variant="outlined" 
                 severity="contrast" />
@@ -56,6 +56,9 @@ import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
+import { useSideBarStore } from '../../store/side-bar.store';
+import { useRouter } from 'vue-router';
+import { useMainCategoryStore } from '../../store/main-category.service';
 
 export default defineComponent({
     components: {
@@ -64,10 +67,15 @@ export default defineComponent({
         const appThemeStore = useAppThemeStore();
         const sideBarStore = useSideBarStore();
         const smallMenu = ref<PopoverMethods | null>(null);
+        const router = useRouter();
+        const mainCategoryStore = useMainCategoryStore();
 
         return {
+            mainCategoryStore,
+            sideBarStore,
             appThemeStore,
-            smallMenu
+            smallMenu,
+            router
         }
     },
     data() {

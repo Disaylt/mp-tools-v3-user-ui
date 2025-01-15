@@ -1,3 +1,4 @@
+import { markRaw } from "vue";
 import AggregateSideBar from "../components/layout/side-contents/AggregateSideBar.vue";
 import OzonSideBar from "../components/layout/side-contents/OzonSideBar.vue";
 import TelegramSideBar from "../components/layout/side-contents/TelegramSideBar.vue";
@@ -16,22 +17,22 @@ class MainCategoryService implements IMainCategoryService{
             {
                 name: "Агрегатор",
                 value: MainCategory.Aggregate,
-                component : AggregateSideBar
+                component : markRaw(AggregateSideBar)
             },
             {
                 name: "OZON",
                 value: MainCategory.Ozon,
-                component : OzonSideBar
+                component : markRaw(OzonSideBar)
             },
             {
                 name: "WB",
                 value: MainCategory.WB,
-                component : WbSideBar
+                component : markRaw(WbSideBar)
             },
             {
                 name: "Telegram",
                 value: MainCategory.Telegram,
-                component : TelegramSideBar
+                component : markRaw(TelegramSideBar)
             }
         ];
     }
