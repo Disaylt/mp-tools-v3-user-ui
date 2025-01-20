@@ -2,33 +2,54 @@
     <div class="bg-card">
         <Header></Header>
     </div>
-    <div class="main flex flex-row flex-wrap bg-ground">
-        <div class="side-bar hidden md:block fadeinleft animation-duration-100 main overflow-auto p-2">
+    <div class="main flex flex-row flex-wrap">
+        <div v-if="sideBarStore.isShowStatic && mainCategoryStore.selectedValue !== null" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
         </div>
         <div class="flex-grow-1 main overflow-auto">
             <div class="body p-2">
-                <p v-for="n in 10">{{ n }}</p>
+                <RouterView />
             </div>
             <div class="footer mx-2 bg-card border-noround-bottom border-round-xl">
-                123
+                <router-link to="/login">Home</router-link>
             </div>
         </div>
     </div>
+    <Drawer v-model:visible="sideBarStore.isShowDraw" header="Drawer">
+        <SideBar></SideBar>
+    </Drawer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import SideBar from './SideBar.vue';
 import Header from './Header.vue'
-
+import { useSideBarStore } from '../../store/side-bar.store';
+import { useMainCategoryStore } from '../../store/main-category.service';
 
 export default defineComponent({
     components: {
         Header,
         SideBar
+    },
+    setup() {
+
+        const sideBarStore = useSideBarStore();
+        const mainCategoryStore = useMainCategoryStore();
+        
+        return{
+            sideBarStore,
+            mainCategoryStore
+        }
+    },
+    data: () => {
+        return {
+            visibleDrawSideMenu : false as boolean
+        }
+    },
+    computed: {
     }
 });
 </script>

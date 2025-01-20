@@ -1,17 +1,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import Layout from "./components/layout/Layout.vue"
 
 export default defineComponent({
+  mounted() {
+    this.$primevue.config.ripple = true;
+  },
   components: {
-    Layout
   }
 })
 
 </script>
 
 <template>
-  <Layout></Layout>
+  <RouterView />
 </template>
 
 <style scoped>
