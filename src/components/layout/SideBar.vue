@@ -10,7 +10,7 @@ import WbSideBar from './side-contents/WbSideBar.vue';
 import OzonSideBar from './side-contents/OzonSideBar.vue';
 import TelegramSideBar from './side-contents/TelegramSideBar.vue';
 import AggregateSideBar from './side-contents/AggregateSideBar.vue';
-import { useMainCategoryStore } from '../../store/main-category.service';
+import { useMainCategoryStore } from '../../store/main-category.store';
 import MainCategoryService from '../../services/main-category.service';
 import type { MainCategoryView } from '../../models/category.model';
 

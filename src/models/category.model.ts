@@ -10,5 +10,6 @@ export enum MainCategory{
 export interface MainCategoryView{
     name : string;
     value : MainCategory,
-    component : Component
+    component : Component,
+    description : string
 }

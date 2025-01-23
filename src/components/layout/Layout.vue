@@ -2,14 +2,15 @@
     <div class="bg-card">
         <Header></Header>
     </div>
-    <div class="main flex flex-row flex-wrap">
+    <div class="main flex flex-row">
         <div v-if="sideBarStore.isShowStatic && mainCategoryStore.selectedValue !== null" class="side-bar hidden md:block fadeinleft animation-duration-100 overflow-auto main p-2">
             <div class="bg-card border-round-xl">
                 <SideBar></SideBar>
             </div>
         </div>
-        <div class="flex-grow-1 main overflow-auto">
+        <div class="flex-grow-1 w-full main overflow-auto">
             <div class="body p-2">
+                <MainCategoriesTable></MainCategoriesTable>
                 <RouterView />
             </div>
             <div class="footer mx-2 bg-card border-noround-bottom border-round-xl">
@@ -27,12 +28,14 @@ import { defineComponent } from 'vue';
 import SideBar from './SideBar.vue';
 import Header from './Header.vue'
 import { useSideBarStore } from '../../store/side-bar.store';
-import { useMainCategoryStore } from '../../store/main-category.service';
+import { useMainCategoryStore } from '../../store/main-category.store';
+import MainCategoriesTable from '../MainCategoriesTable.vue';
 
 export default defineComponent({
     components: {
         Header,
-        SideBar
+        SideBar,
+        MainCategoriesTable
     },
     setup() {
 

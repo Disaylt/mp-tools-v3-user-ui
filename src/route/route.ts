@@ -34,18 +34,17 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _from, next) => {
-    if(to.meta.requiresAuth){
-        if(useUserStore().user === null){
-            next("/auth/login")
-        }
-        else{
-            next();
-        }
-    }
-    else{
-        next();
+    if(import.meta.env["VITE_AUTH_TYPE"] == "NOT_AUTH"){
+        return next();
     }
 
+    if(to.meta.requiresAuth){
+        if(useUserStore().user === null){
+            return next("/auth/login")
+        }
+    }
+
+    next();
 })
 
 export default router;

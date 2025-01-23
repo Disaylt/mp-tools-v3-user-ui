@@ -58,7 +58,7 @@ import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
 import { useSideBarStore } from '../../store/side-bar.store';
 import { useRouter } from 'vue-router';
-import { useMainCategoryStore } from '../../store/main-category.service';
+import { useMainCategoryStore } from '../../store/main-category.store';
 
 export default defineComponent({
     components: {

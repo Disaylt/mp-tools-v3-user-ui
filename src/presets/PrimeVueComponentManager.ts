@@ -21,9 +21,12 @@ import Skeleton from 'primevue/skeleton';
 import ProgressSpinner from 'primevue/progressspinner';
 import Message from 'primevue/message';
 import Drawer from 'primevue/drawer';
+import Dialog from 'primevue/dialog';
+
 
 class PrimeVueComponentManager{
     addTo(app : App<Element>){
+        app.component("Dialog", Dialog);
         app.component("Drawer", Drawer);
         app.component("Button", Button);
         app.component("Select", Select);
