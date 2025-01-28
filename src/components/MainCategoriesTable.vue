@@ -24,12 +24,21 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="flex flex-column flex-wrap gap-1">
-    <div v-for="item in categories" class="flex-1" style="height: 200px; background:red">
-        <div>{{ item.name }}</div>
-        <div><h2>{{ item.description }}</h2></div>
-      </div>
-  </div>
+<div class="grid p-1">
+        <div v-for="item in categories" class="col-6 p-1">
+            <div class="flex flex-column justify-content-between flex-wrap border-round-md h-full p-1 bg-card shadow-4" >
+                <div>
+                  <h3 class="m-0 text-color">{{ item.name }}</h3>
+                </div>
+                <div>
+                  <div class="my-2">
+                    <span>{{ item.description }}</span>
+                  </div>
+                    <Button class="w-full" label="Выбрать" />
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style></style>

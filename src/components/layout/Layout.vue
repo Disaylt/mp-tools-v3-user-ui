@@ -10,7 +10,6 @@
         </div>
         <div class="flex-grow-1 w-full main overflow-auto">
             <div class="body p-2">
-                <MainCategoriesTable></MainCategoriesTable>
                 <RouterView />
             </div>
             <div class="footer mx-2 bg-card border-noround-bottom border-round-xl">
