@@ -22,11 +22,12 @@ import ProgressSpinner from 'primevue/progressspinner';
 import Message from 'primevue/message';
 import Drawer from 'primevue/drawer';
 import Dialog from 'primevue/dialog';
-
+import FloatLabel from 'primevue/floatlabel';
 
 class PrimeVueComponentManager{
     addTo(app : App<Element>){
         app.component("Dialog", Dialog);
+        app.component("FloatLabel", FloatLabel);
         app.component("Drawer", Drawer);
         app.component("Button", Button);
         app.component("Select", Select);

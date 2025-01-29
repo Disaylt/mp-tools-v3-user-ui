@@ -6,14 +6,20 @@
                 @click="sideBarStore.toggle()"
                 :icon="sideBarStore.isShowStatic ? 'pi pi-bars' : 'pi pi-ellipsis-v'"
                 aria-label="Filter" 
-                variant="outlined" 
-                severity="contrast" />
+                variant="outlined" />
             </div>
-            <div class="flex-grow-1">
+            
+            <FloatLabel class="w-full md:w-56" variant="on">
                 <Select :fluid="true" v-model="mainCategoryStore.selectedValue" :options="categories" optionLabel="name" placeholder="Сервисы"
                 style="max-width: 200px;" 
                 :overlay-style="{ 'max-width' : '100vw'}" />
-            </div>
+                <label for="on_label">Категория</label>
+            </FloatLabel>
+            <!-- <div class="flex-grow-1">
+                <Select :fluid="true" v-model="mainCategoryStore.selectedValue" :options="categories" optionLabel="name" placeholder="Сервисы"
+                style="max-width: 200px;" 
+                :overlay-style="{ 'max-width' : '100vw'}" />
+            </div> -->
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
@@ -24,9 +30,9 @@
                         <label>р.</label>
                     </Chip>
                     <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
-                        aria-label="Filter" variant="outlined" severity="contrast" />
-                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast" />
-                    <Button @click="pushToProfile()" icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast" />
+                        aria-label="Filter" variant="outlined" />
+                    <Button @click="pushToAlerts()" icon="pi pi-bell" aria-label="Filter" variant="outlined"  />
+                    <Button @click="pushToProfile()" icon="pi pi-user" aria-label="Filter" variant="outlined"  />
                 </div>
             </div>
             <div class="flex flex-row gap-1 block md:hidden">
@@ -41,7 +47,7 @@
                             <label class="overflow-hidden text-overflow-clip">{{ getMoneyAsCurrencyString }}</label>
                             <label>р.</label>
                         </Chip>
-                        <Button type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
+                        <Button @click="pushToAlerts()" type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
                         <Button @click="pushToProfile()" type="button" label="Профиль" icon="pi pi-user" />
                     </div>
                 </Popover>
@@ -95,6 +101,9 @@ export default defineComponent({
         },
         pushToProfile(){
             this.router.push("/panel/profile")
+        },
+        pushToAlerts(){
+            this.router.push("/panel/alerts")
         }
     }
 });

@@ -18,43 +18,25 @@ class MainCategoryService implements IMainCategoryService{
                 name: "Агрегатор",
                 value: MainCategory.Aggregate,
                 component : markRaw(AggregateSideBar),
-                description :"Позволяет объединить компании на маркетплейсах в 1 единую компанию. Упрощает управление и просмотр аналитики и статистики."
+                description :"Объедените компании на маркетплейсах в 1 единую компанию. Упрощает управление и расширяет статистику и аналитику."
             },
             {
                 name: "OZON",
                 value: MainCategory.Ozon,
                 component : markRaw(OzonSideBar),
-                description :"Прдоставляет инструменты для работы с данными маркетплейсом."
+                description :"Используйте автоматизацию, статистику и аналитику для улучшения продаж на Ozon."
             },
             {
                 name: "WB",
                 value: MainCategory.WB,
                 component : markRaw(WbSideBar),
-                description :"Прдоставляет инструменты для работы с данными маркетплейсом."
+                description :"Используйте автоматизацию, статистику и аналитику для улучшения продаж на WB."
             },
             {
                 name: "Telegram",
                 value: MainCategory.Telegram,
                 component : markRaw(TelegramSideBar),
-                description :"Позволяет подписаться на события ваших компаний, а так же перенести управление сервисами в чат бота."
-            },
-            {
-                name: "OZON",
-                value: MainCategory.Ozon,
-                component : markRaw(OzonSideBar),
-                description :"Прдоставляет инструменты для работы с данными маркетплейсом."
-            },
-            {
-                name: "WB",
-                value: MainCategory.WB,
-                component : markRaw(WbSideBar),
-                description :"Прдоставляет инструменты для работы с данными маркетплейсом."
-            },
-            {
-                name: "Telegram",
-                value: MainCategory.Telegram,
-                component : markRaw(TelegramSideBar),
-                description :"Позволяет подписаться на события ваших компаний, а так же перенести управление сервисами в чат бота."
+                description :"Подписывайтесь на уведомления сервисов и селлерских компаний, а так же управлйяте инструментами и просматривайте отчеты в Telegram."
             }
         ];
     }

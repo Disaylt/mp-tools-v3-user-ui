@@ -1,5 +1,5 @@
 <template>
-    <Button class="w-full" @click="logOut()" label="Выйти" severity="help" />
+    <Button class="" @click="logOut()" label="Выйти" variant="outlined"  />
 </template>
 
 <script lang="ts">
