@@ -5,6 +5,7 @@ import Register from '../views/auth/Register.vue';
 import Auth from '../views/Auth.vue';
 import { useUserStore } from '../store/user.store';
 import Profile from '../views/panel/Profile.vue';
+import UserNotifications from '../views/panel/UserNotifications.vue';
 
 const routes = [
     {
@@ -12,6 +13,7 @@ const routes = [
         component: Layout,
         children: [
             { path: 'profile', component: Profile },
+            { path: 'alerts', component: UserNotifications },
         ],
         meta: {
             requiresAuth: true
@@ -34,18 +36,17 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _from, next) => {
-    if(to.meta.requiresAuth){
-        if(useUserStore().user === null){
-            next("/auth/login")
-        }
-        else{
-            next();
-        }
-    }
-    else{
-        next();
+    if(import.meta.env["VITE_AUTH_TYPE"] == "NOT_AUTH"){
+        return next();
     }
 
+    if(to.meta.requiresAuth){
+        if(useUserStore().user === null){
+            return next("/auth/login")
+        }
+    }
+
+    next();
 })
 
 export default router;

@@ -1,7 +1,5 @@
 <template>
-    <div class="">
-        <Button @click="logOut()" label="Выйти" severity="help" />
-    </div>
+    <Button class="" @click="logOut()" label="Выйти" variant="outlined"  />
 </template>
 
 <script lang="ts">
@@ -22,7 +20,7 @@ export default defineComponent({
         }
     },
     methods: {
-        async logOut(){
+        async logOut() {
             await userService.logout()
                 .then(() => {
                     this.userStorage.clear();

@@ -17,22 +17,26 @@ class MainCategoryService implements IMainCategoryService{
             {
                 name: "Агрегатор",
                 value: MainCategory.Aggregate,
-                component : markRaw(AggregateSideBar)
+                component : markRaw(AggregateSideBar),
+                description :"Объедените компании на маркетплейсах в 1 единую компанию. Упрощает управление и расширяет статистику и аналитику."
             },
             {
                 name: "OZON",
                 value: MainCategory.Ozon,
-                component : markRaw(OzonSideBar)
+                component : markRaw(OzonSideBar),
+                description :"Используйте автоматизацию, статистику и аналитику для улучшения продаж на Ozon."
             },
             {
                 name: "WB",
                 value: MainCategory.WB,
-                component : markRaw(WbSideBar)
+                component : markRaw(WbSideBar),
+                description :"Используйте автоматизацию, статистику и аналитику для улучшения продаж на WB."
             },
             {
                 name: "Telegram",
                 value: MainCategory.Telegram,
-                component : markRaw(TelegramSideBar)
+                component : markRaw(TelegramSideBar),
+                description :"Подписывайтесь на уведомления сервисов и селлерских компаний, а так же управлйяте инструментами и просматривайте отчеты в Telegram."
             }
         ];
     }

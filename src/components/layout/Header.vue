@@ -1,19 +1,19 @@
 <template>
     <div class="header flex flex-row px-2 border-bottom-1 border-color">
         <div class="flex align-items-center gap-1" style="width: 230px;">
-            <div class="flex-none">
+        <div class="flex-none">
                 <Button :disabled="mainCategoryStore.selectedValue === null" 
                 @click="sideBarStore.toggle()"
                 :icon="sideBarStore.isShowStatic ? 'pi pi-bars' : 'pi pi-ellipsis-v'"
                 aria-label="Filter" 
-                variant="outlined" 
-                severity="contrast" />
+                severity="contrast" variant="outlined" />
             </div>
-            <div class="flex-grow-1">
+            <FloatLabel class="w-full md:w-56" variant="on">
                 <Select :fluid="true" v-model="mainCategoryStore.selectedValue" :options="categories" optionLabel="name" placeholder="Сервисы"
                 style="max-width: 200px;" 
                 :overlay-style="{ 'max-width' : '100vw'}" />
-            </div>
+                <label for="on_label">Категория</label>
+            </FloatLabel>
         </div>
         <div class="flex flex-grow-1 flex flex-row-reverse align-items-center gap-1">
             <div class="hidden md:block">
@@ -24,16 +24,15 @@
                         <label>р.</label>
                     </Chip>
                     <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
-                        aria-label="Filter" variant="outlined" severity="contrast" />
-                    <Button icon="pi pi-bell" aria-label="Filter" variant="outlined" severity="contrast" />
-                    <Button @click="pushToProfile()" icon="pi pi-user" aria-label="Filter" variant="outlined" severity="contrast" />
+                        aria-label="Filter" severity="contrast" rounded variant="outlined" />
+                    <Button @click="pushToAlerts()" icon="pi pi-bell" aria-label="Filter" severity="contrast" rounded variant="outlined" />
+                    <Button @click="pushToProfile()" icon="pi pi-user" aria-label="Filter" severity="contrast" rounded variant="outlined"  />
                 </div>
             </div>
             <div class="flex flex-row gap-1 block md:hidden">
                 <Button @click="appThemeStore.toggle()" :icon="appThemeStore.isDark ? 'pi pi-moon' : 'pi pi-sun'"
-                    aria-label="Filter" variant="outlined" severity="contrast" />
-                <Button @click="opentMenu($event)" icon="pi pi-ellipsis-v" aria-label="Filter" variant="outlined"
-                    severity="contrast" />
+                    aria-label="Filter" severity="contrast" rounded variant="outlined" />
+                <Button @click="opentMenu($event)" icon="pi pi-ellipsis-v" aria-label="Filter" severity="contrast" rounded variant="outlined" />
                 <Popover ref="smallMenu">
                     <div class="flex flex-column gap-2">
                         <Chip class="flex justify-content-center  overflow-hidden w-full">
@@ -41,8 +40,8 @@
                             <label class="overflow-hidden text-overflow-clip">{{ getMoneyAsCurrencyString }}</label>
                             <label>р.</label>
                         </Chip>
-                        <Button type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
-                        <Button @click="pushToProfile()" type="button" label="Профиль" icon="pi pi-user" />
+                        <Button rounded  @click="pushToAlerts()" type="button" label="Уведомления" icon="pi pi-bell" badge="99+"  />
+                        <Button rounded  @click="pushToProfile()" type="button" label="Профиль" icon="pi pi-user" />
                     </div>
                 </Popover>
             </div>
@@ -58,7 +57,7 @@ import { useAppThemeStore } from '../../store/app-theme.store';
 import type { PopoverMethods } from 'primevue/popover';
 import { useSideBarStore } from '../../store/side-bar.store';
 import { useRouter } from 'vue-router';
-import { useMainCategoryStore } from '../../store/main-category.service';
+import { useMainCategoryStore } from '../../store/main-category.store';
 
 export default defineComponent({
     components: {
@@ -95,6 +94,9 @@ export default defineComponent({
         },
         pushToProfile(){
             this.router.push("/panel/profile")
+        },
+        pushToAlerts(){
+            this.router.push("/panel/alerts")
         }
     }
 });
