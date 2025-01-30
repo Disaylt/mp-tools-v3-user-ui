@@ -5,7 +5,7 @@ import Register from '../views/auth/Register.vue';
 import Auth from '../views/Auth.vue';
 import { useUserStore } from '../store/user.store';
 import Profile from '../views/panel/Profile.vue';
-import Alerts from '../views/panel/Alerts.vue';
+import UserNotifications from '../views/panel/UserNotifications.vue';
 
 const routes = [
     {
@@ -13,7 +13,7 @@ const routes = [
         component: Layout,
         children: [
             { path: 'profile', component: Profile },
-            { path: 'alerts', component: Alerts },
+            { path: 'alerts', component: UserNotifications },
         ],
         meta: {
             requiresAuth: true

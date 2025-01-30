@@ -1,5 +1,6 @@
 <template>
-    <div>ALERTS</div>
+    <div style="height: 1000px;" class="w-full border-round-lg bg-card">
+    </div>
 </template>
 
 <script lang="ts">
