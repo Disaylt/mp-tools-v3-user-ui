@@ -22,9 +22,7 @@ export default defineComponent({
     MainCategoriesTable
   },
   computed :{
-    isShowMainCategoryTable(){
-      return this.mainCategoryStore.selectedValue === null;
-    }
+    
   }
 })
 
@@ -32,12 +30,6 @@ export default defineComponent({
 
 <template>
   <RouterView />
-  <Dialog v-model:visible="isShowMainCategoryTable" :draggable="false" :closeOnEscape="false" :closable="false"
-    modal class="mx-2" :style="{ width: '50rem' }" style="background:transparent; border:none" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }" >
-     <div class="p-2">
-      <MainCategoriesTable></MainCategoriesTable>
-     </div>
-  </Dialog>
 </template>
 
 <style scoped></style>

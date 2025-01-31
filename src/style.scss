@@ -20,15 +20,27 @@
 }
 
 :root[class*='prime-dark'] {
+    --text-color-default: var(--p-surface-100);
+    --text-color-active: var(--p-surface-0);
     --surface-ground: var(--p-surface-950);
     --code-background: var(--p-surface-800);
     --code-color: var(--p-surface-100);
 }
 
 :root {
+    --text-color-default: var(--p-surface-800);
+    --text-color-active: var(--p-surface-900);
     --surface-ground: #e9eeee;
     --code-background: var(--p-surface-900);
     --code-color: var(--p-surface-200);
+}
+
+.mp-text-color-default{
+    color: var(--text-color-default);
+}
+
+.mp-text-color-active{
+    color: var(--text-color-active);
 }
 
 .bg-ground{
